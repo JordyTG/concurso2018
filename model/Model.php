@@ -13,6 +13,7 @@
  */
 
 include_once 'entidades/Login.php';
+include_once './entidades/DuenioProducto.php';
 include_once 'Database.php';
 
 class Model {
@@ -69,4 +70,32 @@ class Model {
     }
     ///////////////////////////////////////////////////////////
     
+    
+    //MODEL DUEÑO DEL PRODUCTO
+    public function listarDP(){
+        //obtenemos la informacion de la bdd:
+        $pdo = Database::connect($rolUser);
+        $sql = "select  a.numero_orden, a.fecha_ingreso, a.nombre_cliente, a.desarrollador_asignado,
+	   a.resumen_activ, a.prioridad_orden, a.estado_orden 
+        from orden_produccion a, usuario b
+        where a.Id_usuario = b.Id_usuario
+        and b.Rol_usuario = ?
+        and a.estado_orden = 'APROBADO'";
+        $consulta = $pdo->prepare($sql);
+        $consulta->execute(array($rolUser));
+        //obtenemos el registro especifico:
+        $da = $consulta->fetch(PDO::FETCH_ASSOC);
+        $dp = new DuenioProducto();
+        $dp->setNumero_orden($da['numero_orden']);
+        $dp->setFecha_ingreso($da['fecha_ingreso']);
+        $dp->setNombre_cliente($da['nombre_cliente']);
+        $dp->setDesarrollador_asignado($da['desarrollador_asignado']);
+        $dp->setResumen_activ($da['resumen_activ']);
+        $dp->setPrioridad_orden($da['prioridad_orden']);
+        $dp->setEstado_orden($da['estado_orden']);
+        Database::disconnect();
+        //retornamos el objeto encontrado:
+        return $dp;
+
+    }
 }
