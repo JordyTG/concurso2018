@@ -19,9 +19,13 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <a><?php
+            if(isset($_SESSION['msj'])){
+                echo $_SESSION['msj'];
+            }
+        ?></a>    
         
-        
-        <?php if($ROL=="Jefe del Proyecto"){?>
+        <?php if($ROL=="Jefe de Proyecto"){?>
         <h1>PAGINA JEFE </h1></br>
         <h2><?php echo $USER->getName()?></h2>
         

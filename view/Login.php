@@ -17,14 +17,11 @@ and open the template in the editor.
             echo $_SESSION['msj'];
         }
         ?>
+               
+            </br>    
         <form action="../controller/controller.php">
             <input type="text" name="usuario" value="" placeholder="Usuario"></br>
             <input type="password" name="contrasenia" value="" placeholder="Password"></br>
-            <select name="tipoUsuario">
-                <option>Jefe del Proyecto</option>
-                <option>Desarrollador</option>
-                <option>Dueño del Proyecto</option>
-            </select>
             <input type="submit" name="opcion" value="ingreso">
         </form>
         </div>

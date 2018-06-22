@@ -31,7 +31,7 @@ class Model {
         if($dato==null){
             $user=null;    
         }else{
-            $user = new Login($dato['id_usuario'],$dato['rol_usuario'],$dato[''],$dato['name'],$dato['password']);
+            $user = new Login($dato['id_usuario'],$dato['rol_usuario'],$dato['name'],$dato['password']);
         }
         Database::disconnect();
         return $user;
