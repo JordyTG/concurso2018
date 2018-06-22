@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'Model.php';
+include_once '../model/Model.php';
 $Model=new Model();
 switch ($opcion){
     case "ingreso":
@@ -16,9 +16,10 @@ switch ($opcion){
         $usuario=$Model->getUsuario($usuario,$contrasenia);
         if($usuario==null){
             $_SESSION['msj']="Usuario No Encontrado";
-            header('Location: ../view/login.php');
+            header('Location: ../view/Login.php');
         }
-        $_SESSION['user']= serialize($usuario);
+        $_SESSION['userconcurso']= serialize($usuario);
+        $_SESSION['rolconcurso']= $tipoUsuario;
         header('Location:../view/index.php');    
         break;
     default :

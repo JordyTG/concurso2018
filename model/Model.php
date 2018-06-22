@@ -12,7 +12,7 @@
  * @author JordyTG
  */
 
-include_once 'entidades/Usuario.php';
+include_once 'entidades/Login.php';
 include_once 'Database.php';
 
 class Model {

@@ -4,20 +4,66 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
+<?php
+    session_start();
+    include_once '../model/Model.php';
+    if(isset($_SESSION['userconcurso'])){
+        $USER= unserialize($_SESSION['userconcurso']);
+        $ROL= $_SESSION['rolconcurso'];
+   
+?>
 <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
-        <form action="../controller/controllerLogin.php">
-            <input type="hidden" value="ingreso" name="opcion">
-            <h3> Ingrese las Credenciales</h3>
-            <h3> Ingrese el Usuario</h3>
-            <input type="text" name="usuario"  placeholder="usuario" pattern="^[a-zA-Z0-9_.-]*$">
-            <h3> Ingrse la Contraseña</h3>
-            <input type="password" name="contrasenia"  placeholder="contraseña" minlength="8"><br>
-            <br><button type="submit">Ingresar</button> 
-        </form>
+        
+        
+        <?php if($ROL=="Jefe del Proyecto"){?>
+        <h1>PAGINA JEFE </h1></br>
+        <h2><?php echo $USER->getName()?></h2>
+        
+        <!--  CODIGO  -->    
+        
+        <a href="../controller/controller.php?opcion=salir">SALIR</a>
+        <?php }?>
+        
+        
+        
+        
+        
+        
+        <?php if($ROL=="Desarrollador"){?>
+        <h1>PAGINA DESARROLLADOR </h1></br>
+        <h2><?php echo $USER->getName()?></h2>
+        
+        <!--  CODIGO  -->    
+        
+        <a href="../controller/controller.php?opcion=salir">SALIR</a>
+        <?php }?>
+        
+        
+        
+        
+        
+        
+        
+        
+        <?php if($ROL=="Dueño del Proyecto"){?>
+        <h1>PAGINA DUEÑO </h1></br>
+        <h2><?php echo $USER->getName()?></h2>
+        
+        <!--  CODIGO  -->    
+        
+        <a href="../controller/controller.php?opcion=salir">SALIR</a>
+        <?php }?>
+            
     </body>
 </html>
+<?php
+    }else{
+        header("location: Login.php");
+    }
+?>
