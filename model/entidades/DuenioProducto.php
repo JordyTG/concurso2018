@@ -5,7 +5,7 @@ class DuenioProducto {
     private $fecha_ingreso;
     private $nombre_cliente;
     private $desarrollador_asignado;
-    private $resumen_activ;
+    private $resumen_activ; 
     private $prioridad_orden;
     private $estado_orden;
     
